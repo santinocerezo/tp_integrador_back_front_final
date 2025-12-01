@@ -1,0 +1,46 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+
+<main class="container">
+  <h1>Crear nuevo producto Barberpoint</h1>
+
+  <form id="formCrearProducto">
+    <div>
+      <label>Nombre</label>
+      <input type="text" name="nombre" id="nombre" required>
+    </div>
+
+    <div>
+      <label>Tipo</label>
+      <select name="tipo" id="tipo" required>
+        <option value="SERVICIO">SERVICIO</option>
+        <option value="PRODUCTO">PRODUCTO</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Precio</label>
+      <input type="number" name="precio" id="precio" required min="0">
+    </div>
+
+    <div>
+      <label>URL de imagen</label>
+      <input type="text" name="imagen" id="imagen" required>
+    </div>
+
+    <div>
+      <label>Activo</label>
+      <select name="activo" id="activo">
+        <option value="1">Activo</option>
+        <option value="0">Inactivo</option>
+      </select>
+    </div>
+
+    <button type="submit">Crear producto</button>
+  </form>
+
+  <p id="msgCrear"></p>
+</main>
+
+<script src="/js/create.js"></script>
+<%- include("partials/footer") %>

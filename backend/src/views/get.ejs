@@ -1,0 +1,17 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+
+<main class="container">
+  <h1>Consultar producto por ID</h1>
+
+  <form id="formConsultar">
+    <label>ID producto</label>
+    <input type="number" id="idConsulta" required min="1">
+    <button type="submit">Buscar</button>
+  </form>
+
+  <div id="resultadoConsulta"></div>
+</main>
+
+<script src="/js/get.js"></script>
+<%- include("partials/footer") %>

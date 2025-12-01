@@ -1,0 +1,254 @@
+:root{ /*acá fijo los colores para no estar reescribiendo */
+  --green:#2aa745;
+  --verde2:#1e7a33;
+  --fondo:#ffffff;
+  --fondoCard:#ffffff;
+  --texto:#1f2328;
+  --gris:#545f75;
+  --borde:#ececec;
+  --btnRojo:#e11d48;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--fondo);color:var(--texto);
+  font-family:sans-serif}
+
+/* Nav */
+.navbar{
+  display: flex;
+  padding: 10px;
+  background: var(--green);
+  color: #000000;
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.brand{
+  font-weight:700; 
+  font-size: 48px; }
+.alumno{
+  color: rgb(0, 0, 0);
+  opacity:.25;
+  font-size: 36px;  }
+
+.bloque-centro{
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  gap: 100px;
+}
+.search{
+  max-width:320px;
+  padding:9px;
+  border:0;
+  border-radius:10px;
+  outline:none;
+  font-size: 24px;
+}
+.cart-mini{
+  padding: 20px;
+  font-weight:700}
+
+.container{
+  max-width:1200px;
+  margin:26px auto;
+  padding:0 16px
+}
+.header-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:10px}
+.actions-inline{
+  display:flex;
+  gap:10px}
+h2.section{
+  margin:0;
+  font-size:22px}
+
+/* Cards grid */
+/* ====== GRID DE CARDS COMO EN LA FOTO DEL PROFE ====== */
+.container{ max-width: 1200px; margin: 26px auto; padding: 0 16px; }
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);  /* 5 cards por fila (como el ejemplo) */
+  gap: 22px;
+}
+
+.card{
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;        /* imagen, título, precio, botón en columna */
+  align-items: center;           /* todo centrado */
+  text-align: center;
+  min-height: 250px;             /* altura consistente */
+}
+
+.card img{
+  width: 150px;
+  height: 120px;
+  object-fit: contain;
+  margin: 6px 0 8px;
+}
+
+.card h4{ margin: 6px 0 0; font-weight: 700; }
+.card .price{ margin: 4px 0 10px; color: var(--gris); }
+
+.card{
+  background:var(--fondoCard);border:1px solid var(--borde);border-radius:14px;
+  padding:14px;display:flex;flex-direction:column;align-items:center;gap:8px;
+  ;min-height:260px
+}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.06)}
+.card img{width:150px;height:120px;object-fit:contain}
+.card h3{margin:6px 0 0 0;text-transform:capitalize}
+.card p{color:var(--gris);margin:0 0 8px 0}
+.btn{
+  padding:9px 12px;border:1px solid transparent;border-radius:10px;
+  background:var(--green);color:#fff;font-weight:600;cursor:pointer
+}
+.btn:hover{background:var(--verde2)}
+.btn.outline{background:#fff;color:var(--green);border-color:var(--green)}
+.btn.danger{background:var(--btnRojo)}
+
+/* Carrito */
+.cart{
+  margin-top:28px;background:#fff;border:1px solid var(--borde);
+  border-radius:14px;padding:16px
+}
+.cart h3{margin:0 0 12px 0}
+.cart-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.bloque-item{ /*consigna */
+  display:flex;flex-direction: row; align-items:center;justify-content:space-between;
+  border:1px solid var(--borde);border-radius:10px;padding:10px 12px;background:#fff
+}
+.nombre-item{font-weight:600}
+.boton-eliminar{ /*consigna */
+  padding:7px 10px;border:1px solid var(--green);border-radius:8px;
+  background:#fff;color:var(--green);font-weight:700;cursor:pointer
+}
+.boton-eliminar:hover{background:var(--green);color:#fff}
+.cart-actions{
+  display:flex;align-items:center;gap:14px;justify-content:flex-end;margin-top:12px
+}
+.total{font-weight:800;font-size:18px}
+
+
+/* Barberpoint vistas */
+.vista {
+  display: none;
+  padding: 20px;
+}
+
+.vista.activa {
+  display: block;
+}
+
+.campo {
+  margin-bottom: 16px;
+}
+
+.lista-horarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn-horario {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  cursor: pointer;
+  background-color: #f5f5f5;
+}
+
+.btn-horario.seleccionado {
+  background-color: #333;
+  color: #fff;
+}
+
+.contenedor-productos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.grid-productos {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.carrito {
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.item-carrito {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.ticket {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.tabla-ticket {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tabla-ticket th,
+.tabla-ticket td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  font-size: 0.9rem;
+}
+
+.total-ticket {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.acciones-ticket {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.mini-cart {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.btn-admin {
+  margin-left: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  text-decoration: none;
+  font-size: 0.85rem;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.btn-admin:hover {
+  background-color: #333;
+  color: #fff;
+}

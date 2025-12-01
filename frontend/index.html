@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Barberpoint - Autoservicio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/barberpoint_favicon.png">
+</head>
+<body>
+  <nav class="navbar">
+  <div class="brand">Barberpoint</div>
+  <div class="bloque-centro">
+    <div id="alumno" class="alumno">Alumno: Santino Cerezo</div>
+  </div>
+  <div class="mini-cart" id="miniCart">
+    <span id="miniCartInfo">Turno sin seleccionar</span>
+    <a href="http://localhost:3100/login" class="btn-admin">Admin</a>
+  </div>
+</nav>
+
+
+  <main>
+    <!-- Pantalla 1: Bienvenida / login nombre -->
+    <section id="vistaBienvenida" class="vista activa">
+      <h1>Bienvenido a Barberpoint</h1>
+      <p>Ingresá tu nombre para reservar tu turno.</p>
+      <input id="inputNombreCliente" type="text" placeholder="Tu nombre" />
+      <button id="btnContinuarNombre">Continuar</button>
+    </section>
+
+    <!-- Pantalla 2: Selección de barbero, fecha y horario -->
+    <section id="vistaTurno" class="vista">
+      <h1>Elegí tu turno</h1>
+      <p id="saludoCliente"></p>
+
+      <div class="campo">
+        <h2>Barbero</h2>
+        <label><input type="radio" name="barbero" value="Santino"> Santino (corte 60 min - $10.000)</label><br>
+        <label><input type="radio" name="barbero" value="Anibal"> Aníbal (corte 60 min - $15.000)</label>
+      </div>
+
+      <div class="campo">
+        <h2>Fecha</h2>
+        <input type="date" id="inputFechaTurno">
+      </div>
+
+      <div class="campo">
+        <h2>Horarios disponibles</h2>
+        <div id="listaHorarios" class="lista-horarios">
+          <!-- Botones de horario -->
+        </div>
+      </div>
+
+      <button id="btnContinuarProductos" disabled>Continuar a productos</button>
+    </section>
+
+    <!-- Pantalla 3: Selección de productos + carrito -->
+    <section id="vistaProductos" class="vista">
+      <h1>Completá tu experiencia</h1>
+      <p>Podés sumar productos a tu corte.</p>
+
+      <div class="contenedor-productos">
+        <div id="listaProductos" class="grid-productos">
+          <!-- Cards de productos -->
+        </div>
+
+        <aside class="carrito">
+          <h2>Resumen de tu turno</h2>
+          <div id="resumenTurno"></div>
+          <h3>Carrito de productos</h3>
+          <div id="itemsCarrito"></div>
+          <div class="total">
+            Total: $<span id="totalGeneral">0</span>
+          </div>
+          <button id="btnConfirmarReserva">Confirmar reserva</button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Pantalla 4: Ticket -->
+    <section id="vistaTicket" class="vista">
+      <h1>Ticket de reserva</h1>
+      <div id="ticketContenido" class="ticket"></div>
+      <div class="acciones-ticket">
+        <button id="btnDescargarTicket">Descargar ticket (PDF)</button>
+        <button id="btnNuevoTurno">Nuevo turno</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Barberpoint - TP Integrador Programación III</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
