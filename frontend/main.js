@@ -310,17 +310,19 @@ btnConfirmarReserva.addEventListener("click", async () => {
 
   // Armamos items = servicioBase + productos extra
   const items = [
-    {
-      idProducto: servicioBase.idProducto,
-      cantidad: servicioBase.cantidad,
-      precioUnitario: servicioBase.precioUnitario
-    },
-    ...carrito.map(item => ({
-      idProducto: item.idProducto,
-      cantidad: item.cantidad,
-      precioUnitario: item.precioUnitario
-    }))
-  ];
+  {
+    idProducto: servicioBase.idProducto,
+    nombre: servicioBase.nombre,
+    cantidad: servicioBase.cantidad,
+    precioUnitario: servicioBase.precioUnitario
+  },
+  ...carrito.map(item => ({
+    idProducto: item.idProducto,
+    nombre: item.nombre,
+    cantidad: item.cantidad,
+    precioUnitario: item.precioUnitario
+  }))
+];
 
   try {
     const resp = await fetch(API_BASE + "/api/tickets", {
@@ -402,10 +404,73 @@ function renderTicket() {
   `;
 }
 
-// Descargar ticket como PDF (versión simple usando print)
+// Descargar ticket como PDF usando jsPDF
 btnDescargarTicket.addEventListener("click", () => {
-  window.print();
+  if (!ticketGenerado) {
+    alert("No hay ticket generado.");
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const { id, nombreUsuario, barbero, fechaHoraTurno, precioTotal } = ticketGenerado;
+  const fecha = new Date(fechaHoraTurno);
+  const fechaLocal = fecha.toLocaleString("es-AR");
+
+  let y = 10;
+
+  doc.setFontSize(16);
+  doc.text("Barberpoint", 10, y);
+  y += 8;
+
+  doc.setFontSize(11);
+  doc.text(`Ticket N°: ${id}`, 10, y); y += 6;
+  doc.text(`Cliente: ${nombreUsuario}`, 10, y); y += 6;
+  doc.text(`Barbero: ${barbero}`, 10, y); y += 6;
+  doc.text(`Fecha y hora del turno: ${fechaLocal}`, 10, y); y += 8;
+
+  doc.setFontSize(12);
+  doc.text("Detalle:", 10, y);
+  y += 6;
+
+  doc.setFontSize(10);
+  doc.text("Producto", 10, y);
+  doc.text("Cant.", 90, y);
+  doc.text("Precio", 120, y);
+  doc.text("Subtotal", 150, y);
+  y += 5;
+
+  doc.line(10, y, 200, y);
+  y += 5;
+
+  ticketGenerado.items.forEach(item => {
+    const nombre = item.nombre || "";
+    const cantidad = item.cantidad;
+    const precio = item.precioUnitario;
+    const subtotal = cantidad * precio;
+
+    doc.text(String(nombre).substring(0, 30), 10, y);
+    doc.text(String(cantidad), 95, y);
+    doc.text(`$${precio}`, 120, y);
+    doc.text(`$${subtotal}`, 150, y);
+    y += 5;
+  });
+
+  y += 5;
+  doc.line(10, y, 200, y);
+  y += 7;
+
+  doc.setFontSize(12);
+  doc.text(`Total: $${precioTotal}`, 10, y);
+  y += 10;
+
+  doc.setFontSize(10);
+  doc.text("Gracias por elegir Barberpoint", 10, y);
+
+  doc.save(`ticket_${id}.pdf`);
 });
+
 
 // Nuevo turno: reseteamos estado
 btnNuevoTurno.addEventListener("click", () => {

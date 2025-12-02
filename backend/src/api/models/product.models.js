@@ -5,13 +5,13 @@ import connection from "../database/db.js";
 
 // Traer todos los productos
 const selectAllProducts = () => {
-  const sql = "SELECT * FROM productos";
+  const sql = "SELECT * FROM productos WHERE activo = 1";
   return connection.query(sql);
 };
 
 // Traer producto por id
 const selectProductById = (id) => {
-  const sql = "SELECT * FROM productos WHERE id = ?";
+  const sql = "SELECT * FROM productos WHERE id = ? AND activo = 1";
   return connection.query(sql, [id]);
 };
 
@@ -40,11 +40,12 @@ const updateProductById = (producto) => {
   return connection.query(sql, [nombre, tipo, precio, imagen, activo, id]);
 };
 
-// Eliminar producto por id
+// marcamos el producto como inactivo
 const deleteProductById = (id) => {
-  const sql = "DELETE FROM productos WHERE id = ?";
+  const sql = "UPDATE productos SET activo = 0 WHERE id = ?";
   return connection.query(sql, [id]);
 };
+
 
 export default {
   selectAllProducts,
